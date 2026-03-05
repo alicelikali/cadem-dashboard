@@ -482,7 +482,8 @@ async function loadData() {
     // Kullanıcı adını header'a yaz
     const accounts = msalInstance.getAllAccounts();
     if (accounts.length > 0) {
-      document.getElementById('userLabel').textContent = accounts[0].name || accounts[0].username;
+    const userLabelEl = document.getElementById('userLabel');
+    if (userLabelEl) userLabelEl.textContent = accounts[0].name || accounts[0].username;
     }
 
     showApp();
