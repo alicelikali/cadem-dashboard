@@ -490,6 +490,7 @@ async function loadData() {
     buildPicker();
     applyFilter();
   } catch(e) {
+    console.error('loadData hatası:', e);
     showError(e.message);
   }
 }
