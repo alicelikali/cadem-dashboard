@@ -303,7 +303,7 @@ select.week-picker option{background:#fff;color:var(--navy);}
       Case Analiz Paneli
     </div>
   </div>
-  <button onclick="typeof signIn==='function'?signIn():setTimeout(signIn,500)" style="
+  <button id="loginBtn" style="
     background:#fff; color:#1a2f6e; border:none; border-radius:10px;
     padding:14px 32px; font-family:Montserrat,sans-serif; font-size:14px;
     font-weight:700; cursor:pointer; display:flex; align-items:center; gap:10px;
@@ -360,6 +360,9 @@ function waitForMSAL(cb, tries=0) {
 
 waitForMSAL(async () => {
   msalInstance = new msal.PublicClientApplication(MSAL_CONFIG);
+  // Buton event listener'ı burada bağla — fonksiyonlar hazır olduktan sonra
+  const loginBtn = document.getElementById('loginBtn');
+  if (loginBtn) loginBtn.addEventListener('click', signIn);
   await init();
 });
 async function getToken() {
