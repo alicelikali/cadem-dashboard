@@ -359,11 +359,18 @@ function waitForMSAL(cb, tries=0) {
 }
 
 waitForMSAL(async () => {
-  msalInstance = new msal.PublicClientApplication(MSAL_CONFIG);
-  // Buton event listener'ı burada bağla — fonksiyonlar hazır olduktan sonra
-  const loginBtn = document.getElementById('loginBtn');
-  if (loginBtn) loginBtn.addEventListener('click', signIn);
-  await init();
+  try {
+    msalInstance = new msal.PublicClientApplication(MSAL_CONFIG);
+    console.log('msalInstance oluştu');
+    // Buton event listener'ı burada bağla — fonksiyonlar hazır olduktan sonra
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) loginBtn.addEventListener('click', signIn);
+    console.log('loginBtn bağlandı:', !!loginBtn);
+    await init();
+  } catch(e) {
+    console.error('waitForMSAL callback hatası:', e);
+    showLoginScreen();
+  }
 });
 async function getToken() {
   const accounts = msalInstance.getAllAccounts();
