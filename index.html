@@ -473,7 +473,7 @@ function showError(msg) {
 
 // ── Ana veri yükleme akışı ──
 async function loadData() {
-  showLoading('Excel verisi OneDrive'dan çekiliyor…');
+  showLoading('Excel verisi OneDrive\'dan çekiliyor…');
   try {
     const rangeData = await fetchExcelData();
     window.RAW = parseExcelData(rangeData);
